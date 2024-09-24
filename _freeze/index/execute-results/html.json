@@ -1,0 +1,15 @@
+{
+  "hash": "0fa89b9dc154f237d964dfd65f98d446",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"thomas_walker_ICMB_HS24\"\n---\n\n\nThis is a Quarto website. I wrote here too\n\nTo learn more about Quarto websites visit <https://quarto.org/docs/websites>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 2\n```\n\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

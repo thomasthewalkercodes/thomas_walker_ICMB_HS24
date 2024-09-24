@@ -1,0 +1,11 @@
+---
+title: "My Assignment"
+author: "Thomas Walker"
+---
+
+```{r}
+x <- rnorm(10000, mean = 100, sd = 15)
+hist(x)
+```
+
+This is the new text

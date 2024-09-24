@@ -1,0 +1,15 @@
+{
+  "hash": "31fe4679e8f14f26ad2a50006f487c99",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"My Assignment\"\nauthor: \"Thomas Walker\"\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nx <- rnorm(10000, mean = 100, sd = 15)\nhist(x)\n```\n\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n\n\nThis is the new text\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
