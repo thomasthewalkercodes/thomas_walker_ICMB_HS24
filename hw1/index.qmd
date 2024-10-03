@@ -1,5 +1,5 @@
 ---
-title: "My Assignment"
+title: "Assignment 1"
 author: "Thomas Walker"
 ---
 
