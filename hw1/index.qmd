@@ -3,6 +3,8 @@ title: "Assignment 1.0"
 author: "Thomas Walker"
 ---
 
+Why is the title here My assignment I dont see it here on the doc
+
 ```{r}
 x <- rnorm(10000, mean = 100, sd = 15)
 hist(x)
