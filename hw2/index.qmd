@@ -1,0 +1,299 @@
+---
+title: "Assignment 2.0"
+author: "Thomas Walker"
+---
+
+This is my try to replicate the simulation according to the assignment of replicating this simulation found [here](https://github.com/norvig/pytudes/blob/main/ipynb/Economics.ipynb#js-repo-pjax-container).
+
+Since the import random code didnt work out, Ill rewrite the code with the rnorm code, that should give us the same curve. Also creating a histogram for us to see.
+
+```{r}
+N  <- 5000 # Population
+MU <- 100. # Mean of the Population
+std_dev <- 15 # Standard deviation
+
+population <- rnorm(N, mean = MU, sd = std_dev)
+
+hist(population, breaks = 50, main = "Random Gaussian Distribution", xlab = "Value", col = "skyblue")
+```
+
+Now we are computing the gini coefficient. (chatgpt assisted)
+
+```{r}
+gini <- function(y) {
+  # Sort the population
+  y <- sort(y)
+  
+  # Number of elements
+  n <- length(y)
+  
+  # Calculate the Gini coefficient
+  numer <- 2 * sum((1:n) * y)
+  denom <- n * sum(y)
+  
+  # Return the Gini coefficient
+  return((numer / denom) - (n + 1) / n)
+}
+```
+
+Now, lets put my population into the gini coefficient.
+
+```{r}
+gini(population)
+```
+
+Here is me running my simulation multiple times to see if this was a fluke:
+
+```{r}
+population1 <- rnorm(N, mean = MU, sd = std_dev)
+population2 <- rnorm(N, mean = MU, sd = std_dev)
+population3 <- rnorm(N, mean = MU, sd = std_dev)
+population4 <- rnorm(N, mean = MU, sd = std_dev)
+population5 <- rnorm(N, mean = MU, sd = std_dev)
+
+gini(population1)
+gini(population2)
+gini(population3)
+gini(population4)
+gini(population5)
+```
+
+We see that its always around 0.084. Which is a bit weird since in the simulation of the document Im reading puts the gini coeff at 0.11. Since the error is pretty consistent, I suspect an error in my code. I read through the parameters of the gaussian distribution and saw that the put a small formula into the std_dev part: MU/5. Which is std_dev = 20 but I used std_dev = 15.
+
+Lets change that and see whats up
+
+```{r}
+N  <- 5000 # Population
+MU <- 100. # Mean of the Population
+std_dev2 <- MU/5 # Standard deviation
+
+population <- rnorm(N, mean = MU, sd = std_dev2)
+
+hist(population, breaks = 50, main = "Random Gaussian Distribution", xlab = "Value", col = "skyblue")
+```
+
+The histogram already looks a bit flatter, which should imply a higher gini coefficient as its more unequal.
+
+```{r}
+gini(population)
+```
+
+Perfect. Now lets test again if its a fluke.
+
+```{r}
+population1 <- rnorm(N, mean = MU, sd = std_dev2)
+population2 <- rnorm(N, mean = MU, sd = std_dev2)
+population3 <- rnorm(N, mean = MU, sd = std_dev2)
+population4 <- rnorm(N, mean = MU, sd = std_dev2)
+population5 <- rnorm(N, mean = MU, sd = std_dev2)
+
+gini(population1)
+gini(population2)
+gini(population3)
+gini(population4)
+gini(population5)
+```
+
+Now in the end, Ill do the histogram prettier.
+
+```{r}
+hist(population, breaks = 50, main = "Random Gaussian Distribution", xlab = "wealth", ylab = "count", col = "skyblue")
+gini_text <- round(gini(population),4)
+text(x = 150, y = 400, labels = paste(gini_text), col = "skyblue", cex = 1.5)
+```
+
+This suffices.
+
+Now Ill write the function of the money splitting. To be honest, I have never written a function myself but I can use the gini function as a blueprint.
+
+```{r}
+random_split <- function(x,y) {
+  # Sum them up
+  pot <- x+y
+  #how to share
+  part1 <- runif(1, min=0, max=pot)
+  #calcutlating the  split 
+  part2 <- pot - part1
+  # Return the Gini coefficient
+  return(c(part1, part2))
+}
+```
+
+Lets run this bad boy
+
+```{r}
+random_split(30,70)
+
+```
+
+Okay so I dont like how it splits the money into so many small parts. This doesnt make sense as we in real life dont do that either. If we want bigger numbers, Ill just up the amount of money people trade with. Else why did we put the number on 100 if we are taking in numbers in the millions??? Exactly.
+
+```{r}
+random_split <- function(x,y) {
+  # Sum them up
+  pot <- x+y
+  
+  #how to share
+  part1 <- sample(0:pot, 1)
+  
+  #calcutlating the  split 
+  part2 <- pot - part1
+  
+  # Return the Gini coefficient
+  return(c(part1, part2))
+}
+random_split(70,30)
+```
+
+better.
+
+Now, like in the guide, lets see if we can pick two random citiziens of our population.
+
+```{r}
+anyone <- function(x){
+  sample(0:N, 2)
+}
+
+anyone(N) 
+```
+
+Now lets officially start with simulating whueee :)))
+
+```{r}
+"simulate <- function(N, repetitions){
+  history <- list()
+  #so that the first entry is the population we started with
+  history[[1]] <- N
+  
+  for (t in 1:repetitions){
+    selected_people <- anyone(N)
+    #getting the people for trading
+    person1 <- selected_people[1]
+    person2 <- selected_people[2]
+    #getting them the amount what they traded
+    new_wealth <- random_split(person1, person2)
+    #Updating their money
+    N[N == person1] <- new_wealth[1]
+    N[N == person2] <- new_wealth[2]
+    #Record the current state of the population
+    history[[t+1]] <- population
+  }
+  
+  return(history)
+}
+
+repetitions <-1
+
+simulate(population, repetitions)"
+
+```
+
+This next code block is to test some small parts of the code above and see where the problem is.
+
+```{r}
+
+selected_people <- anyone(round_population)
+    #getting the people for trading
+    person1 <- selected_people[1]
+    person2 <- selected_people[2]
+    
+person1
+person2
+
+random_split(person1, person2)
+
+```
+
+I have run into several problems and started solving them in the editor. I think its better if I describe some procesess I have been doing though. So I still get decimals in the gaussian distribution, which I dont want. So Ill change that.
+
+```{r}
+round_population <- round(population)
+
+hist(round_population, breaks = 50, main = "Random Gaussian Distribution", xlab = "Value", col = "skyblue")
+```
+
+Again, some shenanigangs.
+
+```{r}
+person1
+person2
+```
+
+```{r}
+
+selected_people <- anyone(round_population)
+#getting the people for trading
+person1 <- selected_people[1]
+person2 <- selected_people[2]
+person1
+person2
+    #getting them the amount what they traded
+new_wealth <- random_split(person1, person2)
+    #Updating their money
+round_population[round_population == person1] <- new_wealth[1]
+round_population[round_population == person2] <- new_wealth[2]
+person1
+person2
+    #Record the current state of the population
+    #history[[t+1]] <- round_population
+  #}
+  
+
+
+#simulate(round_population, repetitions)
+```
+
+all in one thing:
+
+```{r}
+
+N  <- 5000 # Population
+MU <- 100. # Mean of the Population
+std_dev <- MU/5 # Standard deviation
+
+population <- rnorm(N, mean = MU, sd = std_dev)
+round_population <- round(population)
+
+
+anyone <- function(round_population){
+  sample(1:length(round_population), 2)
+}
+
+random_split <- function(x,y) {
+  # Sum them up
+  pot <- x+y
+  #how to share
+  part1 <- sample(0:pot, 1)
+  #calcutlating the  split 
+  part2 <- pot - part1
+  # Return the Gini coefficient
+  return(c(part1, part2))
+}
+
+simulation <- function(round_population,repetitions) {
+  for (i in 1:repetitions) {
+      selected_people <- anyone(round_population)
+      #getting the people for trading
+      person1 <- round_population[selected_people[1]]
+      person2 <- round_population[selected_people[2]]
+      #making the new wealth distribution between those two
+      new_wealth <- random_split(person1, person2)
+      #overwriting the old bank statement with the new one
+      round_population[selected_people[1]] <- new_wealth[1]
+      round_population[selected_people[2]] <- new_wealth[2]
+      
+  }
+  return(round_population)
+}
+
+repetitions <- 10000
+
+final_population <- simulation(round_population, repetitions)
+
+hist(final_population, breaks = 50, main = "After Simulation Grapn", xlab = "Value", col = "skyblue")
+
+```
+
+This IS CORRECT I WANT TO SCREAM OH MY GOD I CHANGED SO MUCH AND NOW I GET IT YAAAs.
+
+I also noticed that only starting at like 10'000 simulations we get this distribution, before that we dont. (Maybe Ill implement this in this website we will see)
