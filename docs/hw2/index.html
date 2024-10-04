@@ -1274,27 +1274,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb59-312"><a href="#cb59-312" aria-hidden="true" tabindex="-1"></a>      <span class="co">#making the new wealth distribution between those two</span></span>
 <span id="cb59-313"><a href="#cb59-313" aria-hidden="true" tabindex="-1"></a>      new_wealth <span class="ot">&lt;-</span> <span class="fu">random_split</span>(person1, person2)</span>
 <span id="cb59-314"><a href="#cb59-314" aria-hidden="true" tabindex="-1"></a>      <span class="co">#overwriting the old bank statement with the new one</span></span>
-<span id="cb59-315"><a href="#cb59-315" aria-hidden="true" tabindex="-1"></a>      <span class="co">#new_values &lt;- c(new_wealth)</span></span>
-<span id="cb59-316"><a href="#cb59-316" aria-hidden="true" tabindex="-1"></a>      <span class="co">#positions_to_change &lt;- c(person1, person2)</span></span>
-<span id="cb59-317"><a href="#cb59-317" aria-hidden="true" tabindex="-1"></a>      <span class="co">#round_population[positions_to_change] &lt;- new_values</span></span>
-<span id="cb59-318"><a href="#cb59-318" aria-hidden="true" tabindex="-1"></a>      round_population[selected_people[<span class="dv">1</span>]] <span class="ot">&lt;-</span> new_wealth[<span class="dv">1</span>]</span>
-<span id="cb59-319"><a href="#cb59-319" aria-hidden="true" tabindex="-1"></a>      round_population[selected_people[<span class="dv">2</span>]] <span class="ot">&lt;-</span> new_wealth[<span class="dv">2</span>]</span>
-<span id="cb59-320"><a href="#cb59-320" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb59-321"><a href="#cb59-321" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb59-322"><a href="#cb59-322" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(round_population)</span>
-<span id="cb59-323"><a href="#cb59-323" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb59-324"><a href="#cb59-324" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-325"><a href="#cb59-325" aria-hidden="true" tabindex="-1"></a>repetitions <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb59-326"><a href="#cb59-326" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-327"><a href="#cb59-327" aria-hidden="true" tabindex="-1"></a>final_population <span class="ot">&lt;-</span> <span class="fu">simulation</span>(round_population, repetitions)</span>
-<span id="cb59-328"><a href="#cb59-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-329"><a href="#cb59-329" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(final_population, <span class="at">breaks =</span> <span class="dv">50</span>, <span class="at">main =</span> <span class="st">"Random Gaussian Distribution"</span>, <span class="at">xlab =</span> <span class="st">"Value"</span>, <span class="at">col =</span> <span class="st">"skyblue"</span>)</span>
-<span id="cb59-330"><a href="#cb59-330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-331"><a href="#cb59-331" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb59-332"><a href="#cb59-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-333"><a href="#cb59-333" aria-hidden="true" tabindex="-1"></a>This IS CORRECT I WANT TO SCREAM OH MY GOD I CHANGED SO MUCH AND NOW I GET IT YAAAs.</span>
-<span id="cb59-334"><a href="#cb59-334" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-335"><a href="#cb59-335" aria-hidden="true" tabindex="-1"></a>I also noticed that only starting at like 10'000 simulations we get this distribution, before that we dont. (Maybe Ill implement this in this website we will see)</span>
+<span id="cb59-315"><a href="#cb59-315" aria-hidden="true" tabindex="-1"></a>      round_population[selected_people[<span class="dv">1</span>]] <span class="ot">&lt;-</span> new_wealth[<span class="dv">1</span>]</span>
+<span id="cb59-316"><a href="#cb59-316" aria-hidden="true" tabindex="-1"></a>      round_population[selected_people[<span class="dv">2</span>]] <span class="ot">&lt;-</span> new_wealth[<span class="dv">2</span>]</span>
+<span id="cb59-317"><a href="#cb59-317" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb59-318"><a href="#cb59-318" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb59-319"><a href="#cb59-319" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(round_population)</span>
+<span id="cb59-320"><a href="#cb59-320" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb59-321"><a href="#cb59-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-322"><a href="#cb59-322" aria-hidden="true" tabindex="-1"></a>repetitions <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb59-323"><a href="#cb59-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-324"><a href="#cb59-324" aria-hidden="true" tabindex="-1"></a>final_population <span class="ot">&lt;-</span> <span class="fu">simulation</span>(round_population, repetitions)</span>
+<span id="cb59-325"><a href="#cb59-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-326"><a href="#cb59-326" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(final_population, <span class="at">breaks =</span> <span class="dv">50</span>, <span class="at">main =</span> <span class="st">"After Simulation Grapn"</span>, <span class="at">xlab =</span> <span class="st">"Value"</span>, <span class="at">col =</span> <span class="st">"skyblue"</span>)</span>
+<span id="cb59-327"><a href="#cb59-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-328"><a href="#cb59-328" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-329"><a href="#cb59-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-330"><a href="#cb59-330" aria-hidden="true" tabindex="-1"></a>This IS CORRECT I WANT TO SCREAM OH MY GOD I CHANGED SO MUCH AND NOW I GET IT YAAAs.</span>
+<span id="cb59-331"><a href="#cb59-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-332"><a href="#cb59-332" aria-hidden="true" tabindex="-1"></a>I also noticed that only starting at like 10'000 simulations we get this distribution, before that we dont. (Maybe Ill implement this in this website we will see)</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
