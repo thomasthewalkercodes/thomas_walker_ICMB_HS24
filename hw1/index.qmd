@@ -5,6 +5,8 @@ author: "Thomas Walker"
 
 Why is the title here My assignment I dont see it here on the doc
 
+Update please
+
 ```{r}
 x <- rnorm(10000, mean = 100, sd = 15)
 hist(x)

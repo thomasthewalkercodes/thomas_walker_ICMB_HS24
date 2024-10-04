@@ -13,9 +13,9 @@
   {
     "objectID": "hw1/index.html",
     "href": "hw1/index.html",
-    "title": "My Assignment",
+    "title": "Assignment 1.0",
     "section": "",
-    "text": "Codex &lt;- rnorm(10000, mean = 100, sd = 15)\nhist(x)\n\n\n\n\n\n\n\nThis is the new text\n\n\n\n\n\n Back to top",
+    "text": "Why is the title here My assignment I dont see it here on the doc\nUpdate please\n\nCodex &lt;- rnorm(10000, mean = 100, sd = 15)\nhist(x)\n\n\n\n\n\n\n\nThis is the new text\n\n\n\n\n\n Back to top",
     "crumbs": [
       "About",
       "Assignment 1.0"
