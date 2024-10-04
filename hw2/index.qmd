@@ -247,7 +247,7 @@ all in one thing:
 
 ```{r}
 
-N  <- 5000 # Population
+N  <- 5000 # Population.
 MU <- 100. # Mean of the Population
 std_dev <- MU/5 # Standard deviation
 
