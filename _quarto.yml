@@ -4,10 +4,11 @@ project:
   output-dir: docs
   
 execute: 
-  freeze: true
+  freeze: auto
   engine: knitr
   port: 8877
   cache: true
+  named-chunks: false
 
 website:
   title: "Thomas Walker: ICMB portfolio"
@@ -23,6 +24,7 @@ website:
       - index.qmd
       - hw1/index.qmd
       - hw2/index.qmd
+      - hw2.1/index.qmd
 
 format:
   html:

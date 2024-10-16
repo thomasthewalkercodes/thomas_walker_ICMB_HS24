@@ -248,7 +248,7 @@ all in one thing:
 ```{r}
 
 N  <- 5000 # Population.
-MU <- 100. # Mean of the Population
+MU <- 100 # Mean of the Population
 std_dev <- MU/5 # Standard deviation
 
 population <- rnorm(N, mean = MU, sd = std_dev)
