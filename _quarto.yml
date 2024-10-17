@@ -8,7 +8,6 @@ execute:
   engine: knitr
   port: 8877
   cache: true
-  named-chunks: false
 
 website:
   title: "Thomas Walker: ICMB portfolio"
@@ -25,6 +24,7 @@ website:
       - hw1/index.qmd
       - hw2/index.qmd
       - hw2.1/index.qmd
+      - hw2.2/index.qmd
 
 format:
   html:

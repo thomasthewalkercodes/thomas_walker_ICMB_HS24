@@ -1,0 +1,19 @@
+---
+title: "Minus and Plus Curve"
+author: "Thomas Walker"
+---
+
+So I made everything overcomplicated whereas I think I should keep the rules of the economy simple: both numbers get added with their absolute difference to 0 (\|x\|). So maximum = pot and minimum =-pot for the first value we get. After randomly assigning the first value we get (z) from that rane . We proceed by summing up x and y. This will give us their absolute value of worth. This one minus z should give us the new q.
+
+```{r}
+N  <- 5000 # Population.
+MU <- 0 # Mean of the Population
+std_dev <- 20 # Standard deviation
+
+population <- rnorm(N, mean = MU, sd = std_dev)
+round_population <- round(population)
+
+anyone <- function(round_population){
+  sample(seq_along(round_population), 2)
+}
+```

@@ -565,3 +565,5 @@ repetitions <- 10
 
 hist(round_population, breaks = 50, main = "After Simulation Grapn", xlab = "Value", col = "skyblue")
 ```
+
+I got a new idea, for this I need a new page
